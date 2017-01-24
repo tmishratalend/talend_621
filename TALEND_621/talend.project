@@ -370,11 +370,15 @@
     <migrationTask xmi:id="_jhfa7-F1EeatAZ6LF2i-Yw" id="org.talend.repository.hadoopcluster.migration.ChangeHadoopConfJarNameMigrationTask" breaks="6.0.0" version="6.1.2" status="noimpact"/>
     <migrationTask xmi:id="_jhfa8OF1EeatAZ6LF2i-Yw" id="org.talend.repository.hadoopcluster.migration.AdaptDeprecatedHadoopVersionsMigrationTask" breaks="6.0.0" version="6.1.2" status="noimpact"/>
     <migrationTask xmi:id="_jhfa8eF1EeatAZ6LF2i-Yw" id="org.talend.repository.model.migration.AddDefaultVersionValueForElasticsearchLookupInput" breaks="6.2.0" version="6.2.1" status="noimpact"/>
-    <migrationTask xmi:id="_jhfa8uF1EeatAZ6LF2i-Yw" id="org.talend.repository.model.migration.AutoUpdateRelationsMigrationTask" breaks="5.1.1" version="5.1.2" status="noimpact"/>
     <migrationTask xmi:id="_t3jFoOIIEeawB40V-fC1yQ" id="org.talend.mdm.repository.core.migrate.UpdateViewObjectPathMT" breaks="5.1.1" version="5.1.2" status="ok"/>
     <migrationTask xmi:id="_t3jFoeIIEeawB40V-fC1yQ" id="org.talend.mdm.repository.core.migrate.UpdateProcessObjectPathMT" breaks="5.1.1" version="5.1.2" status="ok"/>
     <migrationTask xmi:id="_t3jFouIIEeawB40V-fC1yQ" id="org.talend.mdm.repository.core.migrate.RemoveRefNameMT" breaks="6.0.0" version="6.0.0" status="noimpact"/>
     <migrationTask xmi:id="_t3jFo-IIEeawB40V-fC1yQ" id="org.talend.mdm.repository.core.migrate.UpdateOperatorMigrationTask" breaks="6.2.0" version="6.2.0" status="ok"/>
+    <migrationTask xmi:id="_wu67YOIIEeawB40V-fC1yQ" id="org.talend.repository.model.migration.FixProjectResourceLink" breaks="5.1.1" version="5.1.2" status="noimpact"/>
+    <migrationTask xmi:id="_wu67YeIIEeawB40V-fC1yQ" id="org.talend.datacleansing.core.migration.UpdateTMultiPatternCheckTask" breaks="5.6.0" version="5.6.0" status="ok"/>
+    <migrationTask xmi:id="_wu67YuIIEeawB40V-fC1yQ" id="org.talend.datacleansing.core.migration.UpdateTmatchGroupQualityTask" breaks="5.6.0" version="5.6.0" status="ok"/>
+    <migrationTask xmi:id="_wu67Y-IIEeawB40V-fC1yQ" id="org.talend.mdm.workbench.serverexplorer.migration.UnifyPasswordEncryption4MDMServerDefMigrationTask" breaks="6.0.0" version="6.0.0" status="noimpact"/>
+    <migrationTask xmi:id="_wu67ZOIIEeawB40V-fC1yQ" id="org.talend.repository.model.migration.AutoUpdateRelationsMigrationTask" breaks="5.1.1" version="5.1.2" status="ok"/>
   </TalendProperties:Project>
   <TalendProperties:User xmi:id="_f0_6suF1EeatAZ6LF2i-Yw" login="admin@company.com" firstName="admin" lastName="admin" type="DQ" additionnalData="{}"/>
 </xmi:XMI>
