@@ -103,10 +103,11 @@
     <routinesParameter id="_jL1ToOF1EeatAZ6LF2i-Yw" name="TalendDataGenerator"/>
     <routinesParameter id="_jL-dkOF1EeatAZ6LF2i-Yw" name="TalendDate"/>
     <routinesParameter id="_jMNHEOF1EeatAZ6LF2i-Yw" name="TalendString"/>
+    <routinesParameter id="_uiPBYOIIEeawB40V-fC1yQ" name="MDM"/>
   </parameters>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="160" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJava_1" show="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="String foo = &quot;bar&quot;;&#xA;System.out.println(foo);"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="String foo = &quot;bar&quot;;&#xA;System.out.println(foo);&#xA;System.out.println(&quot;tripti&quot;);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_1"/>
