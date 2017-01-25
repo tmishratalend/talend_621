@@ -180,6 +180,26 @@
       <relatedItems xmi:id="_2jEHpOL1Eeagbd14NdG3AQ" id="MDM" version="Latest" type="routine"/>
       <relatedItems xmi:id="_2jEHpeL1Eeagbd14NdG3AQ" id="MyDouble" version="Latest" type="routine"/>
     </ItemsRelations>
+    <ItemsRelations xmi:id="_3SqbsOL5Eeagbd14NdG3AQ">
+      <baseItem xmi:id="_3SqbseL5Eeagbd14NdG3AQ" id="_ljI7YOL4Eeagbd14NdG3AQ" version="0.1" type="job"/>
+      <relatedItems xmi:id="_3SqbsuL5Eeagbd14NdG3AQ" id="SQLike" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3Sqbs-L5Eeagbd14NdG3AQ" id="Numeric" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3SqbtOL5Eeagbd14NdG3AQ" id="TalendString" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3SqbteL5Eeagbd14NdG3AQ" id="pwdStore" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3SqbtuL5Eeagbd14NdG3AQ" id="MyString" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3Sqbt-L5Eeagbd14NdG3AQ" id="MyFile" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3SqbuOL5Eeagbd14NdG3AQ" id="DemoRoutines" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3SqbueL5Eeagbd14NdG3AQ" id="DataOperation" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3SqbuuL5Eeagbd14NdG3AQ" id="StringHandling" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3Sqbu-L5Eeagbd14NdG3AQ" id="TalendDataGenerator" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3SqbvOL5Eeagbd14NdG3AQ" id="MyDate" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3SqbveL5Eeagbd14NdG3AQ" id="TalendDate" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3SqbvuL5Eeagbd14NdG3AQ" id="Mathematical" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3Sqbv-L5Eeagbd14NdG3AQ" id="Relational" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3SqbwOL5Eeagbd14NdG3AQ" id="MDM" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3SqbweL5Eeagbd14NdG3AQ" id="GetRandomPhoneNum" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_3SqbwuL5Eeagbd14NdG3AQ" id="MyDouble" version="Latest" type="routine"/>
+    </ItemsRelations>
     <migrationTask xmi:id="_jGVvoOF1EeatAZ6LF2i-Yw" id="org.talend.repository.localprovider.RemoveRoutineFolderTask" breaks="5.1.1" version="5.1.2" status="noimpact"/>
     <migrationTask xmi:id="_jGVvoeF1EeatAZ6LF2i-Yw" id="org.talend.repository.localprovider.model.migration.ChangeXmiSerialization" breaks="5.1.1" version="5.1.2" status="noimpact"/>
     <migrationTask xmi:id="_jGVvouF1EeatAZ6LF2i-Yw" id="org.talend.repository.model.migration.CleanFoldersMigrationTask" breaks="5.1.1" version="5.1.2" status="ok"/>
