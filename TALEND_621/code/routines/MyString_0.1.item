@@ -1,0 +1,140 @@
+package routines;
+
+import java.util.HashMap;
+import java.util.Arrays;
+
+/* Various functions for String handling. */
+public class MyString {
+	public static HashMap<String, String> contextParameter = new HashMap<String, String>(); // Stores context data as class member
+
+	/**
+     * isNullOrEmpty: Returns true/false if a String is/not null or empty.
+     * {Category} MyString 
+     * {talendTypes} boolean
+     */
+	public static boolean isNullOrEmpty (String str) {        
+        boolean ret = true;        
+        if (str != null)
+              ret = str.isEmpty();        
+        return ret;        
+	}
+	
+	/**
+     * returnValueOrNull: Returns the value of the field if it is not empty, otherwise returns null.
+     * Used when we need to return null, e.g. for bulk updates where we need to have null to replace it with #N/A
+     * {Category} MyString 
+     * {talendTypes} String
+     */
+	public static String returnValueOrNull (String str) {
+		String string = !isNullOrEmpty(str) ? str : null;
+		
+        return string;
+	}
+		
+	/**
+     * generateFileName: Returns a full-qualified file name: C:\SalesForce\SAAM\log\SAAM_P_2015-06-16_11-10-53_EP1_Accounts_Success.CSV.
+     * {Category} MyString 
+     * {talendTypes} String
+     */
+	public static String generateFileName (String file, String dir) {
+		String directory = "";
+		if(dir == "import")
+			directory = MyString.getContextParameter("IntegrationDirectory");
+		else if(dir == "log")
+			directory = MyString.getContextParameter("IntegrationDirectoryLog");
+		else if(dir == "archive")
+			directory = MyString.getContextParameter("IntegrationDirectoryArchive");
+		else if(dir == "export")
+			directory = MyString.getContextParameter("IntegrationDirectoryExport");
+		else if(dir == "yearChange")
+			directory = MyString.getContextParameter("IntegrationDirectoryYearChange");
+		else
+			throw new NullPointerException("### ERROR ### MyString.generateFileName(): Directory is not set or cannot be found.");
+		
+		return directory + "/" + MyString.getContextParameter("Prefix") + MyDate.getCurrentDateString() + "_" + MyDate.getCurrentTimeString()  + "_" + file;
+	}
+	
+	/**
+     * generateFileNameDaily: Returns a full-qualified file name: C:\SalesForce\SAAM\log\2015-06_TalendStat.CSV.
+     * {Category} MyString 
+     * {talendTypes} String
+     */
+	public static String generateFileNameDaily (String file, String dir) {
+		String directory = "";
+		if(dir == "import")
+			directory = MyString.getContextParameter("IntegrationDirectory");
+		else if(dir == "log")
+			directory = MyString.getContextParameter("IntegrationDirectoryLog");
+		else if(dir == "archive")
+			directory = MyString.getContextParameter("IntegrationDirectoryArchive");
+		else
+			throw new NullPointerException("### ERROR ### MyString.generateFileName(): Directory is not set or cannot be found.");
+		
+		return directory + "/" + MyDate.getCurrentDateString() + "_" + file;
+	}
+	
+	/**
+     * getContextParameter: Returns a stored context parameter.
+     * {Category} MyString 
+     * {talendTypes} String
+     */
+	public static String getContextParameter (String key) {
+		return String.valueOf(contextParameter.get(key)); // Convert, if e.g. boolean returned
+	}
+	/**
+     * getAndResetContextParameter: Returns a stored context parameter, and resets its value. Resetting is necessary so the next check can run.
+     * {Category} MyString 
+     * {talendTypes} String
+     */
+	public static String getAndResetContextParameter (String key) {
+		String value = String.valueOf(contextParameter.get(key));  // Convert, if e.g. boolean returned
+		MyString.setContextParameter("FileFound", "false"); // Reset to false
+		return value;
+	}
+	/**
+     * setContextParameter: Stores a value in the contextParameter map.
+	 * We cannot access context parameters directly in a user routine (e.g. context.var).
+	 * Therefore we use tJava snippet at the beginning of a job to pass all context params to this class.
+     * {Category} MyString 
+     * {talendTypes} void
+     */
+	public static void setContextParameter (String key, String value) {		
+		if(key != null && value != null)
+			contextParameter.put(key, value);
+		else
+			throw new NullPointerException("### ERROR ### MyString.getContextParameter(): key or value is not set.");
+	}
+	
+	/**
+     * replaceDoubleZeroByString: Replaces "0.00" with (null)
+     * {Category} MyString 
+     * {talendTypes} String
+     */
+	public static String replaceDoubleZeroByString (String doubleString) {
+		if(doubleString == null || doubleString.equals("0.00"))
+			return null;
+		else
+			return doubleString;
+	}
+	
+	/**
+	 * checkValidSchaefflerEmail: Checks if emails is a valid Schaeffler email
+	 * {Category} MyString 
+     * {talendTypes} String
+	 */
+	public static String checkValidSchaefflerEmail (String email) {
+		String[] valid = {"schaeffler.com", "bardenbearings.com", "itbconsult.com", "accenture.com", "salesforce.com", "oinio.com", "ruville.de"};
+		/*		
+		if(!isNullOrEmpty(email) && Arrays.asList(valid).contains(email.split("@")[1]))
+			return email;
+		else
+			return "";
+	*/
+		
+		for (String domain : valid) {
+	        if (!isNullOrEmpty(email) && domain.equalsIgnoreCase(email.split("@")[1]))
+	            return email; // Domain found, no need to continue
+	    }
+		return "";
+	}
+}

@@ -1,0 +1,153 @@
+package routines;
+
+import java.util.Date;
+import java.util.Locale;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+/* Various functions for creating time and date stamps. */
+public class MyDate {
+	/**
+     * getCurrentDate: Returns current date as Date.
+     * {Category} MyDate 
+     * {talendTypes} Date
+     */
+	public static Date getCurrentDate() {        
+        return TalendDate.parseDate("YYYY-MM-DD", TalendDate.getDate("YYYY-MM-DD"));
+    }
+	
+	/**
+	 * getCurrentDateString: Returns current date as String: 2015-05-01
+	 * (Category} MyDate
+     * {talendTypes} String
+	 */
+    public static String getCurrentDateString() {
+        return TalendDate.getDate("YYYY-MM-DD");
+    }
+    
+    /**
+	 * getCurrentDateStringForSF: Returns current date as String, including time: 2015-05-01T00:00:00z
+	 * (Category} MyDate
+     * {talendTypes} String
+	 */
+    public static String getCurrentDateStringForSF() {
+        return TalendDate.getDate("YYYY-MM-DD") + "T00:00:00z";
+    }
+    
+    /**
+	 * convertToSFDate: Returns date as SF date: 2015-05-01T00:00:00z
+	 * (Category} MyDate
+     * {talendTypes} Date
+	 */
+    public static Date convertToSFDate(String date) {
+        return TalendDate.parseDate("yyyy-MM-dd'T'HH:mm:ss", date + "T00:00:00z");
+    }
+    
+    /**
+	 * getYesterdayDateStringForSF: Returns the date of yesterday as String, including time: 2015-04-31T00:00:00z
+	 * (Category} MyDate
+     * {talendTypes} String
+	 */
+    public static String getYesterdayDateStringForSF() {
+    	return TalendDate.addDate(MyDate.getCurrentDateString(),"yyyy-MM-dd",-1,"dd") + "T00:00:00z";
+        
+    }
+    
+    /* Returns current date as String: 2015-05
+     * @deprecated: See getCurrentYearMonthString below  */
+    /* public static String getCurrentYearMonthString() {
+    	String date = TalendDate.getDate("YYYY-MM-DD");
+        return date.substring(0, date.length()-3);
+    } */
+    
+    /** getCurrentYearMonthString: Returns current date with the previous month as String: 2015-04. Necessary for AMTK, as a file might be either of the current or last month.
+     * {Category} MyDate
+     * {talendTypes} String
+     * @param monthsBack: Number of previous months back 
+     * (1 = previous month, 2 = month before previous month etc.)
+     * Only works for 1 year back (e.g. 2014 in 2015), as more is not necessary. */
+    public static String getCurrentYearMonthString(Integer monthsBack) { 
+    	String year = TalendDate.getDate("YYYY");
+    	String month = TalendDate.getDate("MM"); // we can calculate with leading zeroes
+    	//System.out.println("month: " + month);
+    	//System.out.println("monthsBack: " + monthsBack);
+    	//System.out.println("Integer.valueOf(month) - monthsBack: " + (Integer.valueOf(month) - monthsBack));
+    	if((Integer.valueOf(month) - monthsBack) >= 1) {
+    		// Add leading zero if necessary
+    		String retMonth = ((Integer.valueOf(month) - monthsBack) < 10) ? "0" + Integer.toString(Integer.valueOf(month) - monthsBack) : Integer.toString(Integer.valueOf(month) - monthsBack);
+    		System.out.println("if: " + year + "-" + retMonth);
+    		return year + "-" + retMonth;
+    	} else { // previous year, not 0, -1, -2 etc.
+    		int remMonthsToSubstractInPreviousYear = monthsBack - Integer.valueOf(month); // current month = difference from current month to 0, so we still need to substract the remaining months
+    		System.out.println("else: " + (Integer.valueOf(year) - 1) + "-" + String.valueOf(12 - remMonthsToSubstractInPreviousYear));    		 
+    		return (Integer.valueOf(year) - 1) + "-" + String.valueOf(12 - remMonthsToSubstractInPreviousYear);
+    	}
+    	/*
+    	if(month != "01") { // If year turned, last month is 12 and not 00
+    		// Add leading zero if necessary
+    		String prevMonth = ((Integer.valueOf(month) - 1) < 10) ? "0" + Integer.toString(Integer.valueOf(month) - 1) : Integer.toString(Integer.valueOf(month) - 1);
+    		return year + "-" + prevMonth;
+    	} else {
+    		return "12";
+    	}
+    	*/
+    }
+    
+    /**
+     * getCurrentTimeString: Returns current time as String: 12-22-58
+     * {Category} MyDate 
+     * {talendTypes} String
+     */
+    public static String getCurrentTimeString() {
+        return TalendDate.getDate("HH:mm:ss").replace(':', '-');
+    }
+    
+    /**
+     * getCurrentDay: Returns current day as String (e.g. 09 or 11).
+     * {Category} MyDate 
+     * {talendTypes} String
+     */
+	public static String getCurrentDay() {
+		String day = String.valueOf(TalendDate.getPartOfDate("DAY_OF_MONTH", TalendDate.getCurrentDate()));
+		if(day.length() == 1)
+			day = "0" + day; // Leading zero 
+        return day;
+    }
+    
+	/**
+     * getDayFromDate: Expects a date string in the format Thu Aug 20 06:41:23 CEST 2015 and returns the day (e.g. 09 or 11).
+     * {Category} MyDate 
+     * {talendTypes} String
+     */
+    public static String getDayFromDate(String date) {
+    	DateFormat df = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
+    	Date result = null;
+		try {
+			result = df.parse(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
+		String day = dayFormat.format(result);
+		
+    	return String.valueOf(day);
+    }
+    
+    /**
+     * getDateDiff: Calculates the day-difference between two dates. First param is a String (Thu Aug 20 06:41:23 CEST 2015), second a date.
+     * Used for removing files via FINISH-Jobs (modified before x days)
+     * {Category} MyDate 
+     * {talendTypes} int
+     */
+    /* The second parameter is ...
+     * To DO: Optimize parameters/data types, only used for SAAM_FINISH at the moment. Should be two dates actually */
+    public static int getDateDiff(String d1, Date d2) {
+    	return (int) TalendDate.diffDate(TalendDate.parseDate("EEE MMM dd kk:mm:ss z yyyy", d1.toString()), d2);
+    }
+    /*
+    public static convertLongToDate(String format, Long date) {
+    	
+    }
+    */
+}

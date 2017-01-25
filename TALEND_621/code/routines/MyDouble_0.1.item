@@ -1,0 +1,46 @@
+package routines;
+
+import java.text.DecimalFormat;
+import java.text.ParseException;
+
+/* Various functions for converting to and from Double. */
+public class MyDouble {
+	/**
+     * stringToDouble: Returns Double converted from String.
+	 * Comma is replaced by point.
+	 * Trailing minus is changed to leading minus. 
+     * {Category} MyDouble 
+     * {talendTypes} Double
+     */
+    public static Double stringToDouble(String value) {
+    	/*DecimalFormat format = new DecimalFormat("##,##");
+    	Double valueDouble = null;
+		try {
+			valueDouble = (Double) format.parse(value);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}       
+    	return valueDouble;
+    	*/ // Does throw exception ????
+    	
+    	// For negative numbers: change "10.00-" to "-10.00"
+    	if(!MyString.isNullOrEmpty(value)) {
+    		if(value.contains(".") && value.contains(",")) // e.g. 1.234,56 to 1234,56
+    			value = value.replace(".", "");
+    		
+	    	if(value.substring(value.length() - 1, value.length()).equals("-"))  			
+	    		 value = "-" + value.substring(0, value.length() - 1);   
+	    	
+	    	Double valueD = null;    	
+	    	try {	    		
+	    		valueD = (value != null) ? Double.valueOf(value.replace(",", ".")) : null;
+	    	} catch(Exception e) {
+	    		System.out.println("### ERROR ### MyDouble.stringToDouble(): " + e.getMessage());
+	    	}
+	    	
+	    	return valueD;
+	    } else {
+	    	throw new NullPointerException("### ERROR ### MyDouble.stringToDouble(): Value is null. (Column not in input file?)");	    	
+	    }
+    }
+}

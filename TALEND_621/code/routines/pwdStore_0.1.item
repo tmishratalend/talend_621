@@ -1,0 +1,109 @@
+package routines;
+
+public class pwdStore {
+	 private static com.powerup.crypt.PU_Pwd pw = null;
+	/**
+     * setPwdStore: sets the file and password to be used to encode and decode the passwords
+     * 
+     * 
+     * {talendTypes} void
+     * 
+     * {Category} pwStore
+     * 
+     * {param} string("/home/me/test.pwd") input: pwstore file name.
+     * 
+     * {param} string("mypwstorepwd") input: pwstore encryption password.
+     * 
+     * {example} setPwdAtore("/home/me/mypass.pwd","filepassword) # 
+     */
+    public static void setPwdStore(String fname,String kspassword) 
+    { 
+    	pw = new com.powerup.crypt.PU_Pwd(fname,kspassword);
+    }
+	
+	
+	/**
+     * getPwd: returns the password corresponding to the specified alias
+     * 
+     * 
+     * {talendTypes} String
+     * 
+     * {Category} pwStore
+     * 
+     * {param} string("/home/me/test.pwd") input: pwstore file name.
+     * 
+     * {param} string("mypwstorepwd") input: pwstore encryption password.
+     * 
+     * {param} string("prod_db_pwd") input: alias to be retrieved.
+     * 
+     * {example} getPwd("/home/me/mypass.pwd","filepassword","prod_db_password") # mysecretpassword.
+     */
+    public static String getPwd(String fname,String kspassword,String alias) 
+    { 
+    	pw = new com.powerup.crypt.PU_Pwd(fname,kspassword);
+    	return pw.getPwd(alias);
+    }
+
+    /**
+     * setPwd: no return value. Sets an alias=password pair
+     * 
+     * 
+     * {talendTypes} void
+     * 
+     * {Category} pwStore
+     * 
+     * {param} string("/home/me/test.pwd") input: pwstore file name.
+     * 
+     * {param} string("mypwstorepwd") input: pwstore encryption password.
+     * 
+     * {param} string("prod_db_pwd") input: alias to be updated.
+     * 
+     * {param} string("MYSECRETPASSWORD") input: password to be assigned to the specified alias .
+     * 
+     * {example} getPwd("/home/me/mypass.pwd","filepassword","prod_db_password","MyS3cre7P4ssw0rd") # 
+     */
+    public static void setPwd(String fname,String kspassword,String alias, String pwd) 
+    { 
+    	pw = new com.powerup.crypt.PU_Pwd(fname,kspassword);
+    	try {
+    	pw.appendPair(alias,pwd); } catch (Exception e) {}
+    }
+    
+    /**
+     * getPwd: returns the password corresponding to the specified alias
+     * 
+     * 
+     * {talendTypes} String
+     * 
+     * {Category} pwStore
+     * 
+     * {param} string("prod_db_pwd") input: alias to be retrieved.
+     * 
+     * {example} getPwd("prod_db_password") # mysecretpassword.
+     */
+    public static String getPwd(String alias) 
+    { 
+      	return pw.getPwd(alias);
+    }
+
+    /**
+     * setPwd: no return value. Sets an alias=password pair
+     * 
+     * 
+     * {talendTypes} void
+     * 
+     * {Category} pwStore
+     * 
+     * {param} string("prod_db_pwd") input: alias to be updated.
+     * 
+     * {param} string("MYSECRETPASSWORD") input: password to be assigned to the specified alias .
+     * 
+     * {example} getPwd("prod_db_password","MyS3cre7P4ssw0rd") # 
+     */
+    public static void setPwd(String alias, String pwd) 
+    { 
+    	try {
+    	pw.appendPair(alias,pwd); } catch (Exception e) {}
+    }
+    
+}

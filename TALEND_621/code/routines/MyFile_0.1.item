@@ -1,0 +1,49 @@
+package routines;
+
+/* Various functions for file handling. */
+public class MyFile {
+	public static String fileName = "";
+	
+	/**
+     * getExistingFile: Receives three files and returns the one which has been found (fileExists = true).
+	 * Used for AMTK to get the current file (current/past/before past month).
+	 * The params are passed as context parameters (defined in checkFileExist).
+     * {Category} MyFile 
+     * {talendTypes} String
+     */
+    public static String getExistingFile(Boolean file1Exists, Boolean file2Exists, Boolean file3Exists, String file1Context, String file2Context, String file3Context) {   	
+    	if(file1Exists && !file2Exists && !file3Exists) {
+    		return file1Context; // File 1 exists
+    	} else if(!file1Exists && file2Exists && !file3Exists) {
+    		return file2Context; // File 2 exists
+    	} else if(!file1Exists && !file2Exists && file3Exists) {
+    		return file3Context; // File 3 exists
+    	} else {
+    		return null; // Both or none exist
+    	}
+    	/* if(file1Exists && !file2Exists) {
+    		return file1Context; // File 1 exists
+    	} else if(!file1Exists && file2Exists) {
+    		return file2Context; // File 2 exists
+    	} else {
+    		return null; // Both or none exist
+    	} */
+    }
+    
+    /**
+     * setFileName: Stores a String as a file name (class member).
+     * {Category} MyFile 
+     * {talendTypes} void
+     */ 
+    public static void setFileName(String name) {
+    	fileName = name;
+    }
+    /**
+     * getFileName: Returns the stored file name (class member).
+     * {Category} MyFile 
+     * {talendTypes} String
+     */
+    public static String getFileName() {
+    	return fileName;
+    }
+}
