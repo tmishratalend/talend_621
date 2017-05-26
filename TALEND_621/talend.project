@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
-  <TalendProperties:Project xmi:id="_f0_6seF1EeatAZ6LF2i-Yw" label="talend_621" description="" language="java" technicalLabel="TALEND_621" creationDate="2017-01-23T15:01:41.866+0000" author="_f0_6suF1EeatAZ6LF2i-Yw" productVersion="Talend Data Fabric-6.2.1.20170224_1747_patch" url="{&quot;commitLogPattern&quot;:&quot;{0}&quot;,&quot;location&quot;:&quot;git@github.com:tmishratalend/talend_621.git&quot;,&quot;login&quot;:&quot;tmishratalend&quot;,&quot;settings&quot;:&quot;001&quot;,&quot;storage&quot;:&quot;git&quot;}" type="DI" itemsRelationVersion="1.3">
+  <TalendProperties:Project xmi:id="_f0_6seF1EeatAZ6LF2i-Yw" label="talend_621" description="" language="java" technicalLabel="TALEND_621" creationDate="2017-01-23T15:01:41.866+0000" author="_f0_6suF1EeatAZ6LF2i-Yw" referencedProjects="_FuWOgEH3EeegMNXO-V3sAg" productVersion="Talend Data Fabric-6.2.1.20170224_1747_patch" url="{&quot;commitLogPattern&quot;:&quot;{0}&quot;,&quot;location&quot;:&quot;git@github.com:tmishratalend/talend_621.git&quot;,&quot;login&quot;:&quot;tmishratalend&quot;,&quot;settings&quot;:&quot;001&quot;,&quot;storage&quot;:&quot;git&quot;}" type="DI" itemsRelationVersion="1.3">
     <technicalStatus xmi:id="_jHC6QOF1EeatAZ6LF2i-Yw" label="development" code="DEV"/>
     <technicalStatus xmi:id="_jHC6QeF1EeatAZ6LF2i-Yw" label="testing" code="TEST"/>
     <technicalStatus xmi:id="_jHC6QuF1EeatAZ6LF2i-Yw" label="production" code="PROD"/>
@@ -564,4 +564,7 @@
     <migrationTask xmi:id="_W-w5U0HqEeecwqnGsnqQIg" id="org.talend.repository.model.migration.AutoUpdateRelationsMigrationTask" breaks="5.1.1" version="5.1.2" status="ok"/>
   </TalendProperties:Project>
   <TalendProperties:User xmi:id="_f0_6suF1EeatAZ6LF2i-Yw" login="admin@company.com" firstName="admin" lastName="admin" type="DQ" additionnalData="{}"/>
+  <TalendProperties:ProjectReference xmi:id="_FuWOgEH3EeegMNXO-V3sAg" project="_f0_6seF1EeatAZ6LF2i-Yw" branch="master" referencedBranch="master">
+    <referencedProject href="../REFPROJECTLATEST/talend.project#projectReference"/>
+  </TalendProperties:ProjectReference>
 </xmi:XMI>
